@@ -26,7 +26,6 @@ def first_data():
                                         "link": "https://akharinkhabar.ir/" + tag.a.get('href'),
                                         "text":""}
                                 scraps.append(news)
-
             except:
                 pass
     return scraps
@@ -50,14 +49,15 @@ def seperator():
             features[0].append(i)
         elif i["group"]=="money":
             features[1].append(i)
-    create_xlsx(features)
+    return features
 
 
-def create_xlsx(lis):
+def create_xlsx():
+    lis=seperator()
     counter=0
     for i in lis:
         counter+=1
         df= pd.DataFrame(i)
         df.to_excel(f"{counter}.xlsx")
 
-seperator()
+create_xlsx()
